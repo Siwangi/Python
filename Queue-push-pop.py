@@ -10,18 +10,37 @@ def GetChoice():
     UserChoice = UserChoice.upper()
     return UserChoice
 array = [1, 2, 3, 4, 5]
+
 def Print():
     print("array: ", array)
+
 def Push():
+    count = 0
     print("Enter number to push")
-    userinput = int(input("number: "))
-    array.append(userinput)
-    print("New array: ", array)
+    try:
+        userinput = int(input("number: "))
+        array.append(userinput)
+        print("New array: ", array)
+    except ValueError:
+        print("You can only push number in this array")
 def Pop():
-    print("Enter number to push")
-    userinput = int(input("number: "))
-    array.remove(userinput)
-    print("New array: ", array)
+    count = 0
+    print("Enter number to pop")
+    try:
+        userinput = int(input("number: "))
+        for i in array:
+            if userinput == i:
+                count = 1
+        if count == 1:
+            array.remove(userinput)
+            print("New array: ", array)
+        elif len(array) == 0:
+            print("Array is empty")
+
+        else:
+            print("Number is not in array")
+    except ValueError:
+        print("You can only pop number in this array")
 
 
 
@@ -34,6 +53,8 @@ def main():
             Push()
         elif Choice == 'PO':
             Pop()
+        # elif Choice == " ":
+
         elif Choice == "Q":
             exit()
 main()
